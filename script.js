@@ -1,3 +1,14 @@
+function randomInteger(max) {
+    return Math.floor(Math.random()*(max + 1));
+}
+
+function randomRgbColor() {
+    let r = randomInteger(255);
+    let g = randomInteger(255);
+    let b = randomInteger(255);
+    return 'rgb(' + r + ', ' + g + ', ' + b + ')';
+}
+
 function submitClicked(){
     let gridSize = parseInt(document.querySelector("input").value);
     alert(gridSize);
@@ -31,7 +42,7 @@ function createGrid(){
 
         square.addEventListener("mouseenter", function(e){
             if(trigger){
-            e.target.style.background = "blue";
+            e.target.style.background = randomRgbColor();
             };
         })
     }
@@ -61,5 +72,5 @@ let btn = document.getElementById("btn");
 btn.onclick = function () {
     removeGrid();
 } 
-
+console.log(randomRgbColor(255))
 //console.log("ai0kis9kk9")
