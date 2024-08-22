@@ -2,11 +2,13 @@ function randomInteger(max) {
     return Math.floor(Math.random()*(max + 1));
 }
 
-function randomRgbColor() {
+function randomRgbaColor() {
     let r = randomInteger(255);
     let g = randomInteger(255);
     let b = randomInteger(255);
-    return 'rgb(' + r + ', ' + g + ', ' + b + ')';
+    let a = nEvents/10;
+    nEvents++;
+    return 'rgb(' + r + ', ' + g + ', ' + b + ', ' +a+ ')';
 }
 
 function submitClicked(){
@@ -26,7 +28,6 @@ function createGrid(){
     let dim = (32/n) + "em";
     for(let i = 0; i < n*n; i++){
         const square = document.createElement("div");
-        //square.setAttribute("style", "height: 1em; width: 1em;")
         square.style.width = dim;
         square.style.height = dim;
         square.classList.add("square");
@@ -42,7 +43,11 @@ function createGrid(){
 
         square.addEventListener("mouseenter", function(e){
             if(trigger){
-            e.target.style.background = randomRgbColor();
+                if(nEvents > 10){
+                    e.target.style.background = "black";
+                }else{
+                    e.target.style.background = randomRgbaColor();
+                }
             };
         })
     }
@@ -56,6 +61,7 @@ function removeGrid(){
     }
 }
 
+let nEvents = 0;
 let trigger = false;
 let container;
 
@@ -71,6 +77,4 @@ submit.addEventListener("click", () => {
 let btn = document.getElementById("btn");
 btn.onclick = function () {
     removeGrid();
-} 
-console.log(randomRgbColor(255))
-//console.log("ai0kis9kk9")
+}
